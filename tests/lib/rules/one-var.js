@@ -266,6 +266,17 @@ ruleTester.run("one-var", rule, {
             }]
         },
         {
+            code: "var a = 0\n, b = 1\n, c = 2;\n\nconsole.log(a);\n\nvar d, e;",
+            options: ["always"],
+            errors: [{
+                message: "Combine this with the previous 'var' statement.",
+                type: "VariableDeclaration",
+                line: 7,
+                column: 1,
+                source: "var d, e;"
+            }]
+        },
+        {
             code: "function foo() { var foo = true, bar = false; }",
             options: [{initialized: "never"}],
             errors: [
